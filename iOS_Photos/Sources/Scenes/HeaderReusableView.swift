@@ -29,10 +29,10 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
 
     // MARK: - Components
     /// Лейбл для отображения заголовка секции.
-    private lazy var titleLable: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
 
-        label.textColor = Colors.titleLableText
+        label.textColor = Colors.titleLabelText
         label.font = Font.titleLabel
         label.textAlignment = .left
 
@@ -66,7 +66,7 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     }
 
     private func setupHierarchy() {
-        addSubview(titleLable)
+        addSubview(titleLabel)
         addSubview(button)
     }
 
@@ -80,9 +80,9 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     }
 
     private func setupConstraints() {
-        titleLable.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(Metric.titleLableLeftIndent)
+            make.left.equalToSuperview().offset(Metric.titleLabelLeftIndent)
         }
 
         button.snp.makeConstraints { make in
@@ -96,14 +96,14 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     /// Установка заголовока для `titleLable`.
     /// - Parameter title: Текст заголовка.
     func setTittle(title: String) {
-        titleLable.text = title
+        titleLabel.text = title
     }
 
 
     // MARK: - Actions
     /// Действие, выполняемое при нажатии на кнопку.
     @objc private func buttonTapped() {
-        print(titleLable.text ?? "Error")
+        print(titleLabel.text ?? "Error")
     }
 
     // MARK: - Functions
@@ -128,13 +128,13 @@ extension HeaderReusableView {
     /// Конфигурация цветов.
     enum Colors {
         static let viewBackground: UIColor = .clear
-        static let titleLableText: UIColor = .white
+        static let titleLabelText: UIColor = .white
         static let separateLineBackground: UIColor = .gray
     }
 
     /// Метрики.
     enum Metric {
-        static let titleLableLeftIndent: CGFloat = 0
+        static let titleLabelLeftIndent: CGFloat = 0
         static let buttonrightIndent: CGFloat = 20
         static let buttonHeight: CGFloat = 40
         static let separateLineStartEndY: CGFloat = 0

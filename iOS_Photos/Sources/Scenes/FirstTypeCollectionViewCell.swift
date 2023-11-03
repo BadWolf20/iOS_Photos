@@ -12,9 +12,9 @@ import SnapKit
  `FirstTypeCollectionViewCell` - это пользовательская ячейка для `UICollectionView`, предназначенная для отображения альбома с изображением, заголовком и количеством элементов.
 
  Основные компоненты:
- - `titleLabel`: UILabel, отображающий название альбома.
- - `quantityLabel`: UILabel, отображающий количество фотографий в альбоме.
- - `mainImage`: UIImageView, показывающий первое изображение альбома.
+ - `titleLabel`: `UILabel`, отображающий название альбома.
+ - `quantityLabel`: `UILabel`, отображающий количество фотографий в альбоме.
+ - `mainImage`: ` UIImageView`, показывающий первое изображение альбома.
 
  Методы:
  - `configure(with:)`: Конфигурирует ячейку, используя предоставленные данные об альбоме.
@@ -25,9 +25,9 @@ import SnapKit
 class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
     // MARK: - Components
     /// `titleLabel` отображает название альбома.
-    lazy var titleLable: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.titleLableText
+        label.textColor = Colors.titleLabelText
         label.font = Font.titleLabel
         label.textAlignment = .left
 
@@ -35,17 +35,17 @@ class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
     }()
 
     /// `quantityLabel` отображает количество фотографий в альбоме.
-    let quantityLable: UILabel = {
+    private lazy var quantityLable: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.quantityLableText
-        label.font = Font.quantityLable
+        label.textColor = Colors.quantityLabelText
+        label.font = Font.quantityLabel
         label.textAlignment = .left
 
         return label
     }()
 
     /// `mainImage` отображает последнее изображение из альбома.
-    lazy var mainImage: UIImageView = {
+    private lazy var mainImage: UIImageView = {
         let image = UIImageView()
         image.layer.masksToBounds = true
         image.layer.cornerRadius = Metric.mainImageCornerRadius
@@ -73,7 +73,7 @@ class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
     }
 
     private func setupHierarchy() {
-        addSubview(titleLable)
+        addSubview(titleLabel)
         addSubview(mainImage)
         addSubview(quantityLable)
     }
@@ -89,15 +89,15 @@ class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
             make.height.equalTo(snp.width)
         }
 
-        titleLable.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.top.equalTo(mainImage.snp.bottom)
-            make.left.equalToSuperview().inset(Metric.nameLableLeftIndent)
+            make.left.equalToSuperview().inset(Metric.nameLabelLeftIndent)
             make.right.equalToSuperview()
         }
 
         quantityLable.snp.makeConstraints { make in
-            make.top.equalTo(titleLable.snp.bottom)
-            make.left.equalToSuperview().inset(Metric.quantityLableLeftIndent)
+            make.top.equalTo(titleLabel.snp.bottom)
+            make.left.equalToSuperview().inset(Metric.quantityLabelLeftIndent)
             make.right.equalToSuperview()
         }
     }
@@ -106,7 +106,7 @@ class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
     /// Конфигурирация ячейки, используя данные об альбоме.
     func configure(with info: Album) {
         mainImage.image = info.photos[0]
-        titleLable.text = info.title
+        titleLabel.text = info.title
         quantityLable.text = String(info.photos.count)
     }
 }
@@ -117,20 +117,20 @@ extension FirstTypeCollectionViewCell {
     /// Конфигурация цветов.
     enum Colors {
         static let viewBackground: UIColor = .clear
-        static let titleLableText: UIColor = .black
-        static let quantityLableText: UIColor = .gray
+        static let titleLabelText: UIColor = .black
+        static let quantityLabelText: UIColor = .gray
     }
 
     /// Метрики.
     enum Metric {
         static let mainImageCornerRadius: CGFloat = 5
-        static let nameLableLeftIndent: CGFloat = 5
-        static let quantityLableLeftIndent: CGFloat = 5
+        static let nameLabelLeftIndent: CGFloat = 5
+        static let quantityLabelLeftIndent: CGFloat = 5
     }
     
     /// Конфигурация шрифтов.
     enum Font {
         static let titleLabel: UIFont = .systemFont(ofSize: 16, weight: .regular)
-        static let quantityLable: UIFont = .systemFont(ofSize: 14, weight: .regular)
+        static let quantityLabel: UIFont = .systemFont(ofSize: 14, weight: .regular)
     }
 }

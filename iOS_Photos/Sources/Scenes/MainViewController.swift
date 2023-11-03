@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import NotificationManager
 
 /**
  Класс `MainViewController` отвечает за отображение и управление коллекцией фотоальбомов в `UICollectionView`.
@@ -98,7 +99,14 @@ class MainViewController: UIViewController {
 
     // MARK: - Actions
     @objc func headerButton() {
-        print("add button taped")
+        NotificationManager.shared.sendNotification(withTitle: NSLocalizedString("headerButtonAction", comment: ""))
+        self.photoData.sectionsList[0].albums.append(Album(id: UUID(),
+                                                           title: NSLocalizedString("NewAlbum", comment: ""),
+                                                           photos: [UIImage(named: "photo-14")!],
+                                                           icon: nil
+                                                          )
+        )
+
         collectionView.reloadData()
     }
 
@@ -208,7 +216,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("\(indexPath) cell pushed")
+
+        NotificationManager.shared.sendNotification(withTitle: String(format: NSLocalizedString("cellPush", comment: ""),
+                                                                      indexPath.row + 1 ,
+                                                                      indexPath.section + 1
+                                                    ))
         collectionView.deselectItem(at: indexPath, animated: true)
     }
 

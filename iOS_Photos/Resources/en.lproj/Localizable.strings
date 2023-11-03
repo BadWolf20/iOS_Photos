@@ -1,0 +1,38 @@
+/* 
+  Localizable.strings
+  iOS_Photos
+
+  Created by Roman on 03.11.2023.
+  
+*/
+
+"albumsViewTitle" = "Albums";
+
+// Альбомы
+"albumRecents" = "Recents";
+"albumFavorites" = "Favorites";
+"albumPeople" = "People & Pets";
+"albumPlaces" = "Places";
+"albumViews" = "Views";
+"albumFriends" = "Friends";
+"albumVideo" = "Videos";
+"albumSelfie" = "Selfie";
+"albumLivePhotos" = "Live Photos";
+"albumPortraits" = "Portraits";
+"albumImports" = "Imports";
+"albumHidden" = "Hidden";
+"albumRecentlyDeleted" = "Recently Deleted";
+"NewAlbum"  = "New Album";
+
+// Секции
+"sectionMyAlbums" = "My Albums";
+"sectionPeoplePetsAndPlaces" = "People, Pets & Places";
+"sectionMediafilesType" = "Mediafiles Types";
+"sectionUtilities" = "Utilities";
+
+"sectionHeaderButton"  = "See All";
+"sectionHeaderButtonAction" = "Section %1$@ openned";
+"sectionHeaderButtonError" = "Error to get section title";
+
+"cellPush" = "You push %1$D cell in %2$D section";
+"headerButtonAction" = "You push header button";

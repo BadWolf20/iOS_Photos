@@ -20,11 +20,9 @@ class MainViewController: UIViewController {
         view.backgroundColor = Colors.ColectionViewBackGround
         view.register(cellType: FirstTypeCollectionViewCell.self)
         view.register(cellType: SecondTypeCollectionViewCell.self)
-        //        view.register(FirstTypeCell.self, forCellWithReuseIdentifier: FirstTypeCell.reuseId)
-        //        view.register(SecondTypeCell.self, forCellWithReuseIdentifier: SecondTypeCell.reuseId)
-        //        view.register(HeaderCollectionReusableView.self,
-        //                      forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-        //                      withReuseIdentifier: HeaderCollectionReusableView.reuseId)
+                view.register(HeaderReusableView.self,
+                              forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                              withReuseIdentifier: HeaderReusableView.reuseId)
 
         view.delegate = self
         view.dataSource = self
@@ -214,25 +212,26 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
 
 
         }
+    }
 
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             print("\(indexPath) cell pushed")
             collectionView.deselectItem(at: indexPath, animated: true)
         }
 
-//        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//            let header = collectionView.dequeueReusableSupplementaryView(
-//                ofKind: kind,
-//                withReuseIdentifier: HeaderCollectionReusableView.reuseId,
-//                for: indexPath) as! HeaderCollectionReusableView
-//            header.setTittle(title: sectionsList[indexPath.section].title)
-//            return header
-//        }
+        func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: HeaderReusableView.reuseId,
+                for: indexPath) as! HeaderReusableView
+            header.setTittle(title: sectionsList[indexPath.section].title)
+            return header
+        }
 
 
 
     }
-}
+
 
 // MARK: - Constants
 

@@ -71,10 +71,11 @@ class MainViewController: UIViewController {
     }
 
     private func setupComponents() {
-        collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Metric.collectionViewTopIndent)
-            make.bottom.left.right.equalToSuperview()
-        }
+        navigationItem.title = NSLocalizedString("albumsViewTitle", comment: "")
+
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(headerButton))
+        navigationItem.leftBarButtonItems = [add]
+
     }
 
     private func setupText() {
@@ -82,7 +83,10 @@ class MainViewController: UIViewController {
     }
 
     private func setupConstraints() {
-
+        collectionView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Metric.collectionViewTopIndent)
+            make.bottom.left.right.equalToSuperview()
+        }
     }
 
     // MARK: - Update
@@ -90,7 +94,11 @@ class MainViewController: UIViewController {
 
 
     // MARK: - Actions
+    @objc func headerButton() {
+        print("add button taped")
 
+        collectionView.reloadData()
+    }
 
 
     // MARK: - Functions

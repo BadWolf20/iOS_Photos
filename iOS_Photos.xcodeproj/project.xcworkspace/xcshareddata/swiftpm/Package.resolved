@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "notificationmanager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/BadWolf20/NotificationManager",
+      "state" : {
+        "branch" : "master",
+        "revision" : "eff73b09634cadb3aa112228c227556646ae6601"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit.git",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    }
+  ],
+  "version" : 2
+}

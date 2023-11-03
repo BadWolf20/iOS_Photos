@@ -19,6 +19,7 @@ class MainViewController: UIViewController {
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: createCompLayout())
         view.backgroundColor = Colors.ColectionViewBackGround
         view.register(cellType: FirstTypeCollectionViewCell.self)
+        view.register(cellType: SecondTypeCollectionViewCell.self)
         //        view.register(FirstTypeCell.self, forCellWithReuseIdentifier: FirstTypeCell.reuseId)
         //        view.register(SecondTypeCell.self, forCellWithReuseIdentifier: SecondTypeCell.reuseId)
         //        view.register(HeaderCollectionReusableView.self,
@@ -206,7 +207,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             cell.configure(with: sectionsList[indexPath.section].albums[indexPath.row])
             return cell
         case .mediaTypes, .utilities:
-            let cell = self.collectionView.dequeueReusableCell(for: indexPath, cellType: FirstTypeCollectionViewCell.self)
+            let cell = self.collectionView.dequeueReusableCell(for: indexPath, cellType: SecondTypeCollectionViewCell.self)
 
             cell.configure(with: sectionsList[indexPath.section].albums[indexPath.row])
             return cell

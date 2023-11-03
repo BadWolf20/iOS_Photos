@@ -51,16 +51,16 @@ let myAlbums = [
 ]
 
 let peopleAndPlaces = [
-    createAlbum(title: "", photoNames: ["photo-1",
+    createAlbum(title: "albumRecents", photoNames: ["photo-1",
                                         "photo-1"])
 ]
 let mediaTypes = [
-    createAlbum(title: "", photoNames: ["photo-1",
-                                        "photo-1"])
+    createAlbum(title: "albumRecents", photoNames: ["photo-1",
+                                                    "photo-1"], icon: .livePhotos)
 ]
 let utilities = [
-    createAlbum(title: "", photoNames: ["photo-1",
-                                        "photo-1"])
+    createAlbum(title: "albumRecents", photoNames: ["photo-1",
+                                                    "photo-1"], icon: .portraits)
 ]
 
 

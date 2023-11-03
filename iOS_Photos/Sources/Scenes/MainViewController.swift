@@ -29,6 +29,10 @@ import SnapKit
  - `Metric`: Определяет метрики для настройки интерфейса, например высоту заголовка.
 */
 class MainViewController: UIViewController {
+    // MARK: - Properties
+    let photoData = PhotoAlbumManager()
+
+
     // MARK: - Components
     private lazy var collectionView: UICollectionView = {
         let view = UICollectionView(frame: view.bounds, collectionViewLayout: createCompLayout())
@@ -103,10 +107,10 @@ class MainViewController: UIViewController {
     private func createCompLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout{ (sectionindex, layoutEnviroment) -> NSCollectionLayoutSection? in
 
-            switch sectionsList[sectionindex].type {
+            switch self.photoData.sectionsList[sectionindex].type {
             case .myAlbums:
                 return self.createPhotoSectionType1()
-            case .peopleAndPlaces:
+            case .peoplePetsAndPlaces:
                 return self.createPhotoSectionType2()
             case .mediaTypes, .utilities:
                 return self.createPhotoSectionType3()
@@ -180,25 +184,25 @@ extension MainViewController {
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sectionsList.count
+        return self.photoData.sectionsList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sectionsList[section].albums.count
+        return self.photoData.sectionsList[section].albums.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-        switch sectionsList[indexPath.section].type {
-        case .myAlbums, .peopleAndPlaces:
+        switch self.photoData.sectionsList[indexPath.section].type {
+        case .myAlbums, .peoplePetsAndPlaces:
             let cell = self.collectionView.dequeueReusableCell(for: indexPath, cellType: FirstTypeCollectionViewCell.self)
 
-            cell.configure(with: sectionsList[indexPath.section].albums[indexPath.row])
+            cell.configure(with: self.photoData.sectionsList[indexPath.section].albums[indexPath.row])
             return cell
         case .mediaTypes, .utilities:
             let cell = self.collectionView.dequeueReusableCell(for: indexPath, cellType: SecondTypeCollectionViewCell.self)
 
-            cell.configure(with: sectionsList[indexPath.section].albums[indexPath.row])
+            cell.configure(with: self.photoData.sectionsList[indexPath.section].albums[indexPath.row])
             return cell
         }
     }
@@ -213,7 +217,7 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             ofKind: kind,
             withReuseIdentifier: HeaderReusableView.reuseId,
             for: indexPath) as! HeaderReusableView
-        header.setTittle(title: sectionsList[indexPath.section].title)
+        header.setTittle(title: self.photoData.sectionsList[indexPath.section].title)
         return header
     }
 }

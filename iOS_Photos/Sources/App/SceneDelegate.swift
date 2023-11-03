@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NotificationManager
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -22,6 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
 
+        NotificationManager.shared.requestNotificationAccess()
         self.window = window
     }
 

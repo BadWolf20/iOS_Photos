@@ -124,7 +124,6 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
 
 // MARK: - Constants
 /// Константы, используемые `HeaderReusableView`.
-
 extension HeaderReusableView {
     /// Конфигурация цветов.
     enum Colors {

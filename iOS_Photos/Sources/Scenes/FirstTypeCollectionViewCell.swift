@@ -8,34 +8,43 @@
 import UIKit
 import SnapKit
 
+/**
+ `FirstTypeCollectionViewCell` - это пользовательская ячейка для `UICollectionView`, предназначенная для отображения альбома с изображением, заголовком и количеством элементов.
+
+ Основные компоненты:
+ - `titleLabel`: UILabel, отображающий название альбома.
+ - `quantityLabel`: UILabel, отображающий количество фотографий в альбоме.
+ - `mainImage`: UIImageView, показывающий первое изображение альбома.
+
+ Методы:
+ - `configure(with:)`: Конфигурирует ячейку, используя предоставленные данные об альбоме.
+
+ Примечания:
+ - `Reusable` протокол используется для упрощения переиспользования ячейки в `UICollectionView`.
+*/
 class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
-    // MARK: - Properties
-
-
-
     // MARK: - Components
-    lazy var nameLable: UILabel = {
+    /// `titleLabel` отображает название альбома.
+    lazy var titleLable: UILabel = {
         let label = UILabel()
-
-        label.textColor = Colors.nameLableTextColor
-        label.font = .systemFont(ofSize: Metric.nameLableFontSize,
-                                 weight: .regular)
+        label.textColor = Colors.titleLableText
+        label.font = Font.titleLabel
         label.textAlignment = .left
 
         return label
     }()
 
+    /// `quantityLabel` отображает количество фотографий в альбоме.
     let quantityLable: UILabel = {
         let label = UILabel()
-
-        label.textColor = Colors.quantityLableTextColor
-        label.font = .systemFont(ofSize: Metric.quantityLableFontSize,
-                                 weight: .regular)
+        label.textColor = Colors.quantityLableText
+        label.font = Font.quantityLable
         label.textAlignment = .left
 
         return label
     }()
 
+    /// `mainImage` отображает последнее изображение из альбома.
     lazy var mainImage: UIImageView = {
         let image = UIImageView()
         image.layer.masksToBounds = true
@@ -56,94 +65,72 @@ class FirstTypeCollectionViewCell: UICollectionViewCell, Reusable {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Setup
+    private func setupUI() {
+        setupHierarchy()
+        setupConstraints()
+        setupComponents()
+    }
 
-        // MARK: - Lifecycle
+    private func setupHierarchy() {
+        addSubview(titleLable)
+        addSubview(mainImage)
+        addSubview(quantityLable)
+    }
 
+    private func setupComponents() {
+        backgroundColor = Colors.viewBackground
+        self.clipsToBounds = true
+    }
 
-
-        // MARK: - Setup
-        private func setupUI() {
-
-            setupHierarchy()
-            setupConstraints()
-            setupComponents()
-            setupText()
+    private func setupConstraints() {
+        mainImage.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(snp.width)
         }
 
-        private func setupHierarchy() {
-            addSubview(nameLable)
-            addSubview(mainImage)
-            addSubview(quantityLable)
+        titleLable.snp.makeConstraints { make in
+            make.top.equalTo(mainImage.snp.bottom)
+            make.left.equalToSuperview().inset(Metric.nameLableLeftIndent)
+            make.right.equalToSuperview()
         }
 
-        private func setupComponents() {
-            backgroundColor = Colors.viewBackGround
-            self.clipsToBounds = true
-
-            mainImage.snp.makeConstraints { make in
-                make.top.left.right.equalToSuperview()
-                make.height.equalTo(snp.width)
-            }
-
-            nameLable.snp.makeConstraints { make in
-                make.top.equalTo(mainImage.snp.bottom)
-                make.left.equalToSuperview().inset(Metric.nameLableLeftIndent)
-                make.right.equalToSuperview()
-            }
-
-            quantityLable.snp.makeConstraints { make in
-                make.top.equalTo(nameLable.snp.bottom)
-                make.left.equalToSuperview().inset(Metric.quantityLableLeftIndent)
-                make.right.equalToSuperview()
-            }
-
-
-
+        quantityLable.snp.makeConstraints { make in
+            make.top.equalTo(titleLable.snp.bottom)
+            make.left.equalToSuperview().inset(Metric.quantityLableLeftIndent)
+            make.right.equalToSuperview()
         }
+    }
 
-        private func setupText() {
-
-        }
-
-        private func setupConstraints() {
-
-        }
-
-        // MARK: - Update
-
-
-
-        // MARK: - Actions
-
-
-
-        // MARK: - Functions
+    // MARK: - Functions
+    /// Конфигурирация ячейки, используя данные об альбоме.
     func configure(with info: Album) {
         mainImage.image = info.photos[0]
-        nameLable.text = info.title
+        titleLable.text = info.title
         quantityLable.text = String(info.photos.count)
     }
 }
 
 // MARK: - Constants
-extension FirstTypeCollectionViewCell{
+/// Константы, используемые `FirstTypeCollectionViewCell`.
+extension FirstTypeCollectionViewCell {
+    /// Конфигурация цветов.
     enum Colors {
-        // view
-        static let viewBackGround: UIColor = .clear
-        // nameLable
-        static let nameLableTextColor: UIColor = .black
-        // quantityLable
-        static let quantityLableTextColor: UIColor = .gray
+        static let viewBackground: UIColor = .clear
+        static let titleLableText: UIColor = .black
+        static let quantityLableText: UIColor = .gray
     }
 
+    /// Метрики.
     enum Metric {
-        // mainImage
         static let mainImageCornerRadius: CGFloat = 5
-        // nameLable
-        static let nameLableFontSize: CGFloat = 16
         static let nameLableLeftIndent: CGFloat = 5
-        // quantityLable
-        static let quantityLableFontSize: CGFloat = 14
         static let quantityLableLeftIndent: CGFloat = 5
+    }
+    
+    /// Конфигурация шрифтов.
+    enum Font {
+        static let titleLabel: UIFont = .systemFont(ofSize: 16, weight: .regular)
+        static let quantityLable: UIFont = .systemFont(ofSize: 14, weight: .regular)
     }
 }

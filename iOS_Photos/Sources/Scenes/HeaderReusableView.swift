@@ -7,34 +7,45 @@
 
 import UIKit
 
+/**
+ `HeaderReusableView` - это переиспользуемое заголовочное представление для `UICollectionView`, которое может отображать заголовок и кнопку.
+
+ Основные компоненты:
+ - `titleLabel`: UILabel, отображающий текст заголовка.
+ - `button`: UIButton, который может быть настроен для выполнения действия при нажатии.
+
+ Основные методы:
+ - `setTittle(title:)`: Настраивает текст заголовка на `titleLabel`.
+ - `buttonTapped`: Селектор, который вызывается при нажатии на кнопку.
+
+ Примечания:
+ - `reuseId` предоставляется для регистрации и переиспользования представления в `UICollectionView`.
+ */
 class HeaderReusableView: UICollectionReusableView, Reusable {
     // MARK: - Properties
+    /// Идентификатор для переиспользования представления.
     static let reuseId = "HeaderReusableView"
 
 
     // MARK: - Components
-    lazy var titleLable: UILabel = {
+    /// Лейбл для отображения заголовка секции.
+    private lazy var titleLable: UILabel = {
         let label = UILabel()
 
-        label.textColor = Colors.titleLableTextColor
-        label.font = .systemFont(ofSize: Metric.titleLableFontSize, weight: .heavy)
+        label.textColor = Colors.titleLableText
+        label.font = Font.titleLabel
         label.textAlignment = .left
 
         return label
     }()
 
-    let button: UIButton = {
+    /// Кнопка, которая может быть использована для выполнения действия, связанного с секцией.
+    private lazy var button: UIButton = {
         let button = UIButton(type: .custom)
-        // Настройте внешний вид кнопки
-        button.setTitle("Button", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        // Добавьте действие для кнопки
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
 
         return button
     }()
-
-
 
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -46,13 +57,8 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
         fatalError("Not implemented")
     }
 
-    // MARK: - Lifecycle
-
-
-
     // MARK: - Setup
     private func setupUI() {
-
         setupHierarchy()
         setupConstraints()
         setupComponents()
@@ -65,12 +71,12 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     }
 
     private func setupComponents() {
-        backgroundColor = Colors.backGround
-
+        backgroundColor = Colors.viewBackground
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
     private func setupText() {
-
+        button.setTitle("Button", for: .normal)
     }
 
     private func setupConstraints() {
@@ -81,45 +87,63 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
 
         button.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().inset(20)
-            make.height.equalTo(40)
+            make.right.equalToSuperview().inset(Metric.buttonrightIndent)
+            make.height.equalTo(Metric.buttonHeight)
         }
-
     }
 
     // MARK: - Update
+    /// Установка заголовока для `titleLable`.
+    /// - Parameter title: Текст заголовка.
     func setTittle(title: String) {
         titleLable.text = title
     }
 
 
     // MARK: - Actions
+    /// Действие, выполняемое при нажатии на кнопку.
     @objc private func buttonTapped() {
-        print(titleLable.text ?? "error")
+        print(titleLable.text ?? "Error")
     }
 
-
     // MARK: - Functions
+    /// Рисование разделительной линии.
+    override func draw(_ rect: CGRect) {
+        let aPath = UIBezierPath()
+        aPath.move(to: CGPoint(x: Metric.separateLineStartX,
+                               y: Metric.separateLineStartEndY))
+        aPath.addLine(to: CGPoint(x: frame.width,
+                                  y: Metric.separateLineStartEndY ))
+        aPath.close()
+
+        Colors.separateLineBackground.set()
+        aPath.stroke()
+        aPath.fill()
+    }
 }
 
 // MARK: - Constants
+/// Константы, используемые `HeaderReusableView`.
 
 extension HeaderReusableView {
+    /// Конфигурация цветов.
     enum Colors {
-        // view
-        static let backGround: UIColor = .clear
-        // titleLable
-        static let titleLableTextColor: UIColor = .white
-        // line
-        static let lineColor: UIColor = .gray
+        static let viewBackground: UIColor = .clear
+        static let titleLableText: UIColor = .white
+        static let separateLineBackground: UIColor = .gray
     }
 
+    /// Метрики.
     enum Metric {
-        // titleLable
-        static let titleLableFontSize: CGFloat = 19
         static let titleLableLeftIndent: CGFloat = 0
-        // line
-        static let lineStartEndY: CGFloat = 0
-        static let lineStartX: CGFloat = 5
+        static let buttonrightIndent: CGFloat = 20
+        static let buttonHeight: CGFloat = 40
+        static let separateLineStartEndY: CGFloat = 0
+        static let separateLineStartX: CGFloat = 5
+    }
+
+    /// Конфигурация шрифтов.
+    enum Font {
+        static let titleLabel: UIFont = .systemFont(ofSize: 19, weight: .semibold)
     }
 }

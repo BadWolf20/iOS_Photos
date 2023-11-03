@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NotificationManager
 
 /**
  `HeaderReusableView` - это переиспользуемое заголовочное представление для `UICollectionView`, которое может отображать заголовок и кнопку.
@@ -76,7 +77,7 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     }
 
     private func setupText() {
-        button.setTitle("Button", for: .normal)
+        button.setTitle(NSLocalizedString("sectionHeaderButton", comment: ""), for: .normal)
     }
 
     private func setupConstraints() {
@@ -103,7 +104,14 @@ class HeaderReusableView: UICollectionReusableView, Reusable {
     // MARK: - Actions
     /// Действие, выполняемое при нажатии на кнопку.
     @objc private func buttonTapped() {
-        print(titleLabel.text ?? "Error")
+        if let title = titleLabel.text {
+            let text = String(format: NSLocalizedString("sectionHeaderButtonAction", comment: ""),
+                              title)
+            NotificationManager.shared.sendNotification(withTitle: text)
+        } else {
+            let text = String(format: NSLocalizedString("sectionHeaderButtonError", comment: ""))
+            NotificationManager.shared.sendNotification(withTitle: text)
+        }
     }
 
     // MARK: - Functions

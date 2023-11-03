@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  iOS_Photos
+
+  Created by Roman on 03.11.2023.
+  
+*/
+
+"albumsViewTitle" = "Альбомы";
+
+// Альбомы
+"albumRecents" = "Недавние";
+"albumFavorites" = "Избранное";
+"albumPeople" = "Люди и животные";
+"albumPlaces" = "Места";
+"albumViews" = "Виды";
+"albumFriends" = "Друзья";
+"albumVideo" = "Видео";
+"albumSelfie" = "Селфи";
+"albumLivePhotos" = "Фото Live Photos";
+"albumPortraits" = "Портреты";
+"albumImports" = "Импортировванные";
+"albumHidden" = "Скрытые";
+"albumRecentlyDeleted" = "Недавно удаленные";
+"newAlbum"  = "Новый альбом";
+
+// Секции
+"sectionMyAlbums" = "Мои альбомы";
+"sectionPeoplePetsAndPlaces" = "Люди, животные и места";
+"sectionMediafilesType" = "Типы медиафайлов";
+"sectionUtilities" = "Другое";
+
+"sectionHeaderButton" = "Открыть все";
+"sectionHeaderButtonAction" = "Открыта секция: %1$@";
+"sectionHeaderButtonError" = "Ошибка в получении названия секции";
+
+"cellPush" = "Нажата ячейка %1$D в секции %2$D";
+"headerButtonAction" = "Нажата кнопка header'а";
+

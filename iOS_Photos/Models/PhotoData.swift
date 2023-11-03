@@ -15,10 +15,10 @@ class PhotoAlbumManager {
 
     /// Массив секций, содержащий все типы альбомов.
     lazy var sectionsList = [
-        Section(type: .myAlbums, title: "sectionMyAlbums", albums: myAlbums),
-        Section(type: .peoplePetsAndPlaces, title: "peopleAndPlaces", albums: peoplePetsAndPlaces),
-        Section(type: .mediaTypes, title: "mediaTypes", albums: mediaTypes),
-        Section(type: .utilities, title: "utilities", albums: utilities)
+        Section(type: .myAlbums, title: NSLocalizedString("sectionMyAlbums", comment: ""), albums: myAlbums),
+        Section(type: .peoplePetsAndPlaces, title: NSLocalizedString("sectionPeoplePetsAndPlaces", comment: ""), albums: peoplePetsAndPlaces),
+        Section(type: .mediaTypes, title: NSLocalizedString("sectionMediafilesType", comment: ""), albums: mediaTypes),
+        Section(type: .utilities, title: NSLocalizedString("sectionUtilities", comment: ""), albums: utilities)
     ]
 
     /// Массив с альбомами пользователя.

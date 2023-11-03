@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3016CB2B2AF48F5300A60EA4 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3016CB2A2AF48F5300A60EA4 /* MainViewController.swift */; };
 		3016CB2E2AF4902C00A60EA4 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3016CB2D2AF4902C00A60EA4 /* SnapKit */; };
+		3016CB312AF490B900A60EA4 /* NotificationManager in Frameworks */ = {isa = PBXBuildFile; productRef = 3016CB302AF490B900A60EA4 /* NotificationManager */; };
 		30D3D09C2AF48BD80001704C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D3D09B2AF48BD80001704C /* AppDelegate.swift */; };
 		30D3D09E2AF48BD80001704C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30D3D09D2AF48BD80001704C /* SceneDelegate.swift */; };
 		30D3D0A52AF48BD90001704C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30D3D0A42AF48BD90001704C /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3016CB2E2AF4902C00A60EA4 /* SnapKit in Frameworks */,
+				3016CB312AF490B900A60EA4 /* NotificationManager in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +134,7 @@
 			name = iOS_Photos;
 			packageProductDependencies = (
 				3016CB2D2AF4902C00A60EA4 /* SnapKit */,
+				3016CB302AF490B900A60EA4 /* NotificationManager */,
 			);
 			productName = iOS_Photos;
 			productReference = 30D3D0982AF48BD80001704C /* iOS_Photos.app */;
@@ -163,6 +166,7 @@
 			mainGroup = 30D3D08F2AF48BD80001704C;
 			packageReferences = (
 				3016CB2C2AF4902C00A60EA4 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3016CB2F2AF490B900A60EA4 /* XCRemoteSwiftPackageReference "NotificationManager" */,
 			);
 			productRefGroup = 30D3D0992AF48BD80001704C /* Products */;
 			projectDirPath = "";
@@ -415,6 +419,14 @@
 				minimumVersion = 5.6.0;
 			};
 		};
+		3016CB2F2AF490B900A60EA4 /* XCRemoteSwiftPackageReference "NotificationManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BadWolf20/NotificationManager";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -422,6 +434,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3016CB2C2AF4902C00A60EA4 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		3016CB302AF490B900A60EA4 /* NotificationManager */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3016CB2F2AF490B900A60EA4 /* XCRemoteSwiftPackageReference "NotificationManager" */;
+			productName = NotificationManager;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
